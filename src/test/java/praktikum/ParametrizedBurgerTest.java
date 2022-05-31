@@ -14,21 +14,22 @@ import static org.junit.Assert.assertEquals;
 public class ParametrizedBurgerTest {
 
     // создаем ингредиенты для дальнейшего использования в тестах
-    static Ingredient ingredient1 = new Ingredient(IngredientType.FILLING, "Жареный лук", 155);
-    static Ingredient ingredient2 = new Ingredient(IngredientType.SAUCE, "Томатный соус", 30);
-    static Ingredient ingredient3 = new Ingredient(IngredientType.SAUCE, "Сливочный соус", 40);
+    static Database database = new Database();
+    static Ingredient ingredient1 = database.availableIngredients().get(1);
+    static Ingredient ingredient2 = database.availableIngredients().get(2);
+    static Ingredient ingredient3 = database.availableIngredients().get(3);
 
     Burger burger;
 
     @Before // создаем объект бургер перед каждым тестом
     public void setup() {
         burger = new Burger();
+        burger.ingredients.addAll(Arrays.asList(ingredient1, ingredient2, ingredient3));
     }
 
     @Parameters
     @Test // параметризованный тест перемещения ингредиентов
     public void shouldMoveIngredients(int index, int newIndex, List<Ingredient> ingredients) {
-        burger.ingredients.addAll(Arrays.asList(ingredient1, ingredient2, ingredient3));
         burger.moveIngredient(index, newIndex);
         assertEquals(burger.ingredients, ingredients);
     }
@@ -45,7 +46,6 @@ public class ParametrizedBurgerTest {
     @Parameters
     @Test // параметризованный тест удаления ингредиентов
     public void shouldRemoveIngredient(int index, List<Ingredient> ingredients) throws Exception {
-        burger.ingredients.addAll(Arrays.asList(ingredient1, ingredient2, ingredient3));
         burger.removeIngredient(index);
         assertEquals(burger.ingredients, ingredients);
     }
