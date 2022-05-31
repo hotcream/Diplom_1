@@ -16,8 +16,8 @@ public class ParametrizedBurgerTest {
     // создаем ингредиенты для дальнейшего использования в тестах
     static Database database = new Database();
     static Ingredient ingredient1 = database.availableIngredients().get(1);
-    static Ingredient ingredient2 = database.availableIngredients().get(2);
-    static Ingredient ingredient3 = database.availableIngredients().get(3);
+    static Ingredient ingredient2 = database.availableIngredients().get(3);
+    static Ingredient ingredient3 = database.availableIngredients().get(5);
 
     Burger burger;
 
